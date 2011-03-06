@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : menutest.xml
+    Created on : September 20, 2009, 8:03 PM
+    Author     : joshua
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE menubar SYSTEM 'menubar.dtd'>
+<menubar>
+    <menu name="Alpha">
+        <item name="One" method="menuAlphaOne"/>
+        <item method="menuAlphaTwo">Two</item>
+    </menu>
+    <menu name="Beta">
+        <item>Beta One</item>
+        <item>Beta Two</item>
+        <item>Beta Three?</item>
+    </menu>
+</menubar>

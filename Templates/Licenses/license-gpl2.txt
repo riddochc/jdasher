@@ -1,0 +1,21 @@
+<#if licenseFirst??>
+${licenseFirst}
+</#if>
+${licensePrefix}  Copyright ${date?date?string("yyyy")} ${user}.
+${licensePrefix}
+${licensePrefix}  This is free software; you can redistribute it and/or modify
+${licensePrefix}  it under the terms of the GNU General Public License as published by
+${licensePrefix}  the Free Software Foundation; either version 2 of the License, or
+${licensePrefix}  (at your option) any later version.
+${licensePrefix}
+${licensePrefix}  This is distributed in the hope that it will be useful,
+${licensePrefix}  but WITHOUT ANY WARRANTY; without even the implied warranty of
+${licensePrefix}  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+${licensePrefix}  GNU General Public License for more details.
+${licensePrefix}
+${licensePrefix}  You should have received a copy of the GNU General Public License
+${licensePrefix}  along with this; if not, write to the Free Software
+${licensePrefix}  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+<#if licenseLast??>
+${licenseLast}
+</#if>

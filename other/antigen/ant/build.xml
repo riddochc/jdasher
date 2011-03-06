@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="install" default="installMe" basedir=".">
+
+    <!-- set the operating system test properties -->
+    <condition property="isMac">
+        <os family="mac" />
+    </condition>
+    <condition property="isWindows">
+        <os family="windows" />
+    </condition>
+    <condition property="isUnix">
+        <os family="unix" />
+    </condition>
+
+    <property file="${os.name}.properties"/>
+    <property file="default.properties"/>
+    <target name="installMe" depends="install">
+        <echo>Antigen installed at ${install.location.dir}!</echo>
+    </target>
+    <target name="install" depends="getlocation">
+    	<copy todir="${install.location.dir}">
+    		<fileset dir="dist"/>
+    	</copy>
+    </target>
+
+    <target name="getlocation" depends="greet">
+        <input addproperty="install.location.dir" defaultvalue="${install.location.default}"> Where would you like to install JDasher? </input>
+    	<available property="dir.already.exists" file="${install.location.dir}"/>
+    	<condition property="can.overwrite" value="yes">
+    		<not><isset property="dir.already.exists"/></not>
+    	</condition>
+    	<input addproperty="can.overwrite" validargs="yes,no">
+    		This directory already exists - can I overwrite it?
+    	</input>
+		<condition property="continue">
+    		<equals arg1="${can.overwrite}" arg2="yes"/>
+    	</condition>
+
+
+    	<fail unless="continue" message="Please try again with a different directory then."/>
+
+    </target>
+
+    <target name="greet" description="Just demonstrate that we can have a default property">
+        <echo> ${antigen.greeting} </echo>
+    </target>
+</project>

@@ -1,0 +1,43 @@
+#!/bin/sh
+
+appname="JDasher"
+
+# NOTE: Major portions of this code have been borrowed from netbeans.
+
+resolve_symlink () {
+    file="$1"
+    while [ -h "$file" ]; do
+        ls=`ls -ld "$file"`
+        link=`expr "$ls" : '^.*-> \(.*\)$' 2>/dev/null`
+        if expr "$link" : '^/' 2> /dev/null >/dev/null; then
+            file="$link"
+        else
+            file=`dirname "$1"`"/$link"
+        fi
+    done
+    echo "$file"
+}
+
+# This is not strictly needed but perhaps it will be useful in the future.
+PRG=`resolve_symlink "$0"`
+progdir=`dirname "$PRG"`
+resdir="$progdir/../Resources"
+jargs=""
+
+# Some platforms need extra help.
+case "`uname`" in
+    Darwin*)
+        jargs="$jargs -Dcom.apple.mrj.application.apple.menu.about.name=$appname"
+        jargs="$jargs -Xdock:name=$appname -Xdock:icon=$resdir/$appname.icns"
+        # TODO: why won't this work: jargs="$jargs -Dapple.laf.useScreenMenuBar=true"
+        ;;
+    *)
+        ;;
+esac
+
+echo "progdir=$progdir"
+echo "resdir=$resdir"
+echo "jargs=$jargs"
+
+java $jargs -jar $resdir/JDasher.jar $@
+#java $jargs -cp $resdir/$appname.jar dasher.app.AppleDasher $@
