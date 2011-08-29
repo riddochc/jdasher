@@ -1,0 +1,16 @@
+JDasher
+=======
+Chris Riddoch <riddochc@gmail.com>
+0.3, 2011-08-22
+
+== DESCRIPTION ==
+
+This is a port of Dasher to the Java environment
+
+== TODO ==
+
+Presently the major task is to fully understand the porting effort done up to
+this point, and compare the logic with that in Dasher, which has also continued
+to develop.
+
+
